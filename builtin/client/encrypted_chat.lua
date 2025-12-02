@@ -1,6 +1,6 @@
 -- secret messages
 -- (using formerly base64 but now using A E S)
-local MOD_PATH = core.get_builtin_path() .. "client"
+local MOD_PATH = core.get_builtin_path() .. "client/"
 
 local aes = dofile(MOD_PATH.."aes.lua").packaged
 
