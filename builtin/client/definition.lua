@@ -40,18 +40,6 @@ local function encrypt_aes(message, name)
     return false, err        
 end
 
-core.override_chatcommand("aes", {
-    description = "Send an AES encrypted message",
-    param = "<player> <message>",
-    func = function(text)
-        local player, message = text:match("^(%S+)%s(.+)$")
-
-        if not player or not message then
-            return false, "-!- Invalid usage, command usage: .aes <player> <message>"
-        end
-    end
-})
-
 core.register_on_receiving_chat_message(function(message)
     local name, head_start = message:find(HEADER,nil,true)
     local footer_start, _ = message:find(FOOTER, nil, true)
