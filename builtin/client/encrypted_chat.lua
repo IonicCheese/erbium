@@ -16,4 +16,14 @@ end
 
 local key = hex_to_string("2a2305e78c34997168bed08c6434ffd") -- this will do for now...
 
-core.register_chatcommand("aes", {}) -- overridden in definition.lua
+core.register_chatcommand("aes", {
+    description = "Send an AES encrypted message",
+    param = "<player> <message>",
+    func = function(text)
+        local player, message = text:match("^(%S+)%s(.+)$")
+
+        if not player or not message then
+            return false, "-!- Invalid usage, command usage: .aes <player> <message>"
+        end
+    end
+})
