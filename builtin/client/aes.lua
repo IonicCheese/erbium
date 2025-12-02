@@ -18,7 +18,7 @@ local AES_PACKAGED = {}
 
 -- Load the Base64 library, which is a dependency for the 'packaged' API.
 local base64
-pcall(function() base64 = dofile(core.get_builtin_path() .. "client") .. "/b64.lua") end)
+pcall(function() base64 = dofile(core.get_builtin_path() .. "client/b64.lua") end)
 if not base64 then pcall(function() base64 = dofile("b64.lua") end) end
 if not base64 then error("LOADER ERROR: Could not load the required base64 library.") end
 
