@@ -44,8 +44,7 @@ function mm_game_theme.set_engine(hide_decorations)
 	end
 
 	if not have_bg then
-			core.set_clouds(core.settings:get_bool("menu_clouds"))
-		end
+		core.set_clouds(core.settings:get_bool("menu_clouds"))
 	end
 end
 
