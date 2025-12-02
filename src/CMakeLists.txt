@@ -1084,6 +1084,7 @@ if(BUILD_CLIENT AND NOT ANDROID)
 	)
 	if(UNIX)
 		CreateLegacyAlias(minetest_alias "${EXECUTABLE_OUTPUT_PATH}/minetest" ${PROJECT_NAME})
+		CreateLegacyAlias(luanti_alias "${EXECUTABLE_OUTPUT_PATH}/luanti" ${PROJECT_NAME})
 	endif()
 
 	if(APPLE)
