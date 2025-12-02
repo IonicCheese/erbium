@@ -2,7 +2,7 @@ core.display_chat_message("loading commands...")
 
 -- secret messages
 -- (using formerly base64 but now using A E S)
-local MOD_PATH = core.get_builtin_path() .. "client"
+local MOD_PATH = core.get_builtin_path() .. "client/"
 local HEADER = [[LSswNDJbIiI6IX0rLz48KyEtMXw=]] -- header to detect
 local FOOTER = [[MV8pISh8Kw==]]
 
@@ -61,7 +61,7 @@ core.register_on_receiving_chat_message(function(message)
         local decrypted, err = aes.decrypt(mtd, key)
 
         if decrypted then
-            core.display_chat_message(core.colorize("red","CSM.TTD.AES: ")..message:sub(1, name - 1)..decrypted)
+            core.display_chat_message(core.colorize("red","Received encrypted message: ")..message:sub(1, name - 1)..decrypted)
             return true
         else
             core.display_chat_message(core.colorize("red","-!- DECRYPT ERROR: ").."failed to decrypt, `"..mtd .. "`, "..err)
