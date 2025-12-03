@@ -1509,6 +1509,19 @@ void Game::processKeyInput()
 	if (quicktune->hasMessage()) {
 		m_game_ui->showStatusText(utf8_to_wide(quicktune->getMessage()));
 	}
+
+	// Chat macros
+	for (int i = 0; i < 10; i++) {
+		if (wasKeyDown((GameKeyType) (KeyType::MACRO_1 + i))) {
+			std::string chatMacro = g_settings->get("chat_macro" + std::to_string(i + 1));
+			if (chatMacro.empty()) {
+				m_game_ui->showTranslatedStatusText(("Macro slot " + std::to_string(i + 1) + " is not set").c_str());
+			} else {
+				openConsole(0.2, utf8_to_wide(chatMacro).c_str());
+			}
+			break;
+		}
+	}
 }
 
 void Game::processItemSelection(u16 *new_playeritem)

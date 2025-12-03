@@ -73,6 +73,11 @@ void MyEventReceiver::reloadKeybindings()
 		keybindings[KeyType::SLOT_1 + i] = getKeySetting(slot_key_name.c_str());
 	}
 
+	for (int i = 0; i < 10; i++) {
+		std::string macro_key_name = "keymap_macro" + std::to_string(i + 1);
+		keybindings[KeyType::MACRO_1 + i] = getKeySetting(macro_key_name.c_str());
+	}
+
 	// First clear all keys, then re-add the ones we listen for
 	keysListenedFor.clear();
 	for (int i = 0; i < KeyType::INTERNAL_ENUM_COUNT; i++) {

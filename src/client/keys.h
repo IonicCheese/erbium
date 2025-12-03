@@ -94,6 +94,18 @@ public:
 		SLOT_31,
 		SLOT_32,
 
+		// Chat macros
+		MACRO_1,
+		MACRO_2,
+		MACRO_3,
+		MACRO_4,
+		MACRO_5,
+		MACRO_6,
+		MACRO_7,
+		MACRO_8,
+		MACRO_9,
+		MACRO_10,
+
 		// Fake keycode for array size and internal checks
 		INTERNAL_ENUM_COUNT
 

@@ -211,6 +211,30 @@ void set_default_settings()
 	settings->setDefault("keymap_slot31", "");
 	settings->setDefault("keymap_slot32", "");
 
+	settings->setDefault("keymap_macro1", "");
+	settings->setDefault("keymap_macro2", "");
+	settings->setDefault("keymap_macro3", "");
+	settings->setDefault("keymap_macro4", "");
+	settings->setDefault("keymap_macro5", "");
+	settings->setDefault("keymap_macro6", "");
+	settings->setDefault("keymap_macro7", "");
+	settings->setDefault("keymap_macro8", "");
+	settings->setDefault("keymap_macro9", "");
+	settings->setDefault("keymap_macro10", "");
+
+
+	// Chat Macros
+	settings->setDefault("chat_macro1", "");
+	settings->setDefault("chat_macro2", "");
+	settings->setDefault("chat_macro3", "");
+	settings->setDefault("chat_macro4", "");
+	settings->setDefault("chat_macro5", "");
+	settings->setDefault("chat_macro6", "");
+	settings->setDefault("chat_macro7", "");
+	settings->setDefault("chat_macro8", "");
+	settings->setDefault("chat_macro9", "");
+	settings->setDefault("chat_macro10", "");
+
 #ifndef NDEBUG
 	// Default keybinds for quicktune in debug builds
 	settings->setDefault("keymap_quicktune_prev", "SYSTEM_SCANCODE_74"); // KEY_HOME

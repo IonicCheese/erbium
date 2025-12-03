@@ -216,6 +216,8 @@ keymap_inventory (Open inventory) key SYSTEM_SCANCODE_12
 #    Key for moving fast in fast mode.
 keymap_aux1 (Aux1) key SYSTEM_SCANCODE_8
 
+[**Chat]
+
 keymap_chat (Open chat) key SYSTEM_SCANCODE_23
 
 #    Key for opening the chat window to type commands.
@@ -234,15 +236,15 @@ keymap_fastmove (Toggle fast) key SYSTEM_SCANCODE_13
 
 keymap_noclip (Toggle noclip) key SYSTEM_SCANCODE_11
 
-keymap_hotbar_next (Hotbar: select next item) key SYSTEM_SCANCODE_17
-
-keymap_hotbar_previous (Hotbar: select previous item) key SYSTEM_SCANCODE_5
+[**Volume Control]
 
 keymap_mute (Mute) key SYSTEM_SCANCODE_16
 
 keymap_increase_volume (Increase volume) key
 
 keymap_decrease_volume (Decrease volume) key
+
+[**Miscellaneous]
 
 keymap_autoforward (Toggle automatic forward) key
 
@@ -283,6 +285,12 @@ keymap_decrease_viewing_range_min (Decrease view range) key SYSTEM_SCANCODE_45
 #    Modifier key bind for closing your world.
 #    Requires ESC + the selected key to work.
 keymap_close_world (Return to Main Menu) key
+
+[**Hotbar]
+
+keymap_hotbar_next (Hotbar: select next item) key SYSTEM_SCANCODE_17
+
+keymap_hotbar_previous (Hotbar: select previous item) key SYSTEM_SCANCODE_5
 
 keymap_slot1 (Hotbar slot 1) key SYSTEM_SCANCODE_30
 
@@ -347,6 +355,49 @@ keymap_slot30 (Hotbar slot 30) key
 keymap_slot31 (Hotbar slot 31) key
 
 keymap_slot32 (Hotbar slot 32) key
+
+[**Chat Macros]
+
+keymap_macro1 (Macro 1 Key) key
+
+keymap_macro2 (Macro 2 Key) key
+
+keymap_macro3 (Macro 3 Key) key
+
+keymap_macro4 (Macro 4 Key) key
+
+keymap_macro5 (Macro 5 Key) key
+
+keymap_macro6 (Macro 6 Key) key
+
+keymap_macro7 (Macro 7 Key) key
+
+keymap_macro8 (Macro 8 Key) key
+
+keymap_macro9 (Macro 9 Key) key
+
+keymap_macro10 (Macro 10 Key) key
+
+chat_macro1 (Macro 1 Value) string
+
+chat_macro2 (Macro 2 Value) string
+
+chat_macro3 (Macro 3 Value) string
+
+chat_macro4 (Macro 4 Value) string
+
+chat_macro5 (Macro 5 Value) string
+
+chat_macro6 (Macro 6 Value) string
+
+chat_macro7 (Macro 7 Value) string
+
+chat_macro8 (Macro 8 Value) string
+
+chat_macro9 (Macro 9 Value) string
+
+chat_macro10 (Macro 10 Value) string
+
 
 [*Touchscreen]
 
