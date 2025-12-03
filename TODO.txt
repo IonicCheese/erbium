@@ -22,7 +22,7 @@
 
 
 ### MISC
-[ ] Configurable Chat macros
+[X] Configurable Chat macros (10x)
 
 
 ## GRAPHICS
