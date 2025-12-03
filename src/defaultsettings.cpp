@@ -382,6 +382,7 @@ void set_default_settings()
 
 	// Cheats
 	settings->setDefault("fullbright", "false");
+	settings->setDefault("fullbright_factor", "1.0");
 
 	// Input
 	settings->setDefault("invert_mouse", "false");

@@ -727,6 +727,10 @@ performance_tradeoffs (Tradeoffs for performance) bool false
 [**Cheats]
 fullbright (Fullbright) bool false
 
+#   How much influence fullbright has on lighting
+#   Requires: fullbright
+fullbright_factor (Fullbright Factor) float 1.0 0.0 1.0
+
 
 [**Waving Nodes]
 

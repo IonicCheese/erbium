@@ -110,8 +110,14 @@ class GameGlobalShaderUniformSetter : public IShaderUniformSetter
 	CachedPixelShaderSetting<float>
 		m_volumetric_light_strength_pixel{"volumetricLightStrength"};
 
-	static constexpr std::array<const char*, 1> SETTING_CALLBACKS = {
+	bool m_fullbright_enabled;
+	float m_fullbright_factor;
+	CachedPixelShaderSetting<float> m_fullbright_factor_pixel{"fullbrightFactor"};
+
+	static constexpr std::array<const char*, 3> SETTING_CALLBACKS = {
 		"exposure_compensation",
+		"fullbright",
+		"fullbright_factor",
 	};
 
 public:
@@ -119,6 +125,12 @@ public:
 	{
 		if (name == "exposure_compensation")
 			m_user_exposure_compensation = g_settings->getFloat("exposure_compensation", -1.0f, 1.0f);
+
+		if (name == "fullbright")
+			m_fullbright_enabled = g_settings->getBool("fullbright");
+
+		if (name == "fullbright_factor")
+			m_fullbright_factor = g_settings->getFloat("fullbright_factor", 0.0f, 1.0f);
 	}
 
 	static void settingsCallback(const std::string &name, void *userdata)
@@ -139,6 +151,9 @@ public:
 		m_bloom_enabled = g_settings->getBool("enable_bloom");
 		m_volumetric_light_enabled = g_settings->getBool("enable_volumetric_lighting") && m_bloom_enabled;
 		m_crack_animation_length_i = game->crack_animation_length;
+
+		m_fullbright_enabled = g_settings->getBool("fullbright");
+		m_fullbright_factor = g_settings->getFloat("fullbright_factor", 0.0f, 1.0f);
 	}
 
 	~GameGlobalShaderUniformSetter()
@@ -255,6 +270,13 @@ public:
 
 			float volumetric_light_strength = lighting.volumetric_light_strength;
 			m_volumetric_light_strength_pixel.set(&volumetric_light_strength, services);
+		}
+
+		if (m_fullbright_enabled)
+			m_fullbright_factor_pixel.set(&m_fullbright_factor, services);
+		else {
+			static const float zero = 0.0f;
+			m_fullbright_factor_pixel.set(&zero, services);
 		}
 	}
 
