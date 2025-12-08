@@ -60,6 +60,12 @@ VARYING_ highp vec3 eyeVec;
 #if (defined(ENABLE_WATER_REFLECTIONS) && MATERIAL_WATER_REFLECTIONS && ENABLE_WAVING_WATER)
 vec4 perm(vec4 x)
 {
+	return mod(((x * 34.0) + 1.0) * x, 289.0);
+}
+
+// Corresponding gradient of snoise
+vec3 gnoise(vec3 p)
+{
     vec3 a = floor(p);
     vec3 d = p - a;
     vec3 dd = 6.0 * d * (1.0 - d);
