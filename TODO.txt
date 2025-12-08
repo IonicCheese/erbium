@@ -1,8 +1,11 @@
 # Erbium Client TODO
 
+## BASE
+[/] Custom Logo
+
 ## MAIN MENU
 [X] Dark theme main menu
-[ ] Custom Menu banner
+[/] Custom Menu banner
 [ ] Lua Console
 
 ## GAMEPLAY
