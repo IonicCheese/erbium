@@ -132,7 +132,7 @@ bool ClientLauncher::run(GameStartData &start_data, const Settings &cmd_args)
 	scene::ICameraSceneNode* camera;
 	if (g_settings->getBool("menu_diagonal_clouds")) {
 		// Diagonal view
-		camera = g_menucloudsmgr->addCameraSceneNode(NULL, v3f(-70, 0, -70), v3f(0, 60, 100));	
+		camera = g_menucloudsmgr->addCameraSceneNode(NULL, v3f(-70, 0, -70), v3f(0, 60, 100));
 	} else {
 		// Default view
 		camera = g_menucloudsmgr->addCameraSceneNode(NULL, v3f(0, 0, 0), v3f(0, 60, 100));
