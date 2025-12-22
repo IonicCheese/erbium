@@ -358,6 +358,7 @@ void set_default_settings()
 	settings->setDefault("enable_volumetric_lighting", "false");
 	settings->setDefault("enable_water_reflections", "false");
 	settings->setDefault("enable_translucent_foliage", "false");
+	settings->setDefault("light_temp", "6500");
 
 	// Effects Shadows
 	settings->setDefault("enable_dynamic_shadows", "false");
@@ -380,11 +381,6 @@ void set_default_settings()
 #endif
 	settings->setDefault("shadow_map_texture_32bit", "true");
 	settings->setDefault("shadow_map_color", "false");
-
-	// Cheats
-	settings->setDefault("fullbright", "false");
-	settings->setDefault("fullbright_entity_factor", "1.0");
-	settings->setDefault("fullbright_node_factor", "1.0");
 
 	// Input
 	settings->setDefault("invert_mouse", "false");

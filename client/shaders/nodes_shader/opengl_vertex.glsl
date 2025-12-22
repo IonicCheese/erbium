@@ -1,6 +1,7 @@
 uniform mat4 mWorld;
 // Color of the light emitted by the sun.
 uniform vec3 dayLight;
+uniform vec3 lightingColor;
 
 // The cameraOffset is the current center of the visible world.
 uniform highp vec3 cameraOffset;
@@ -40,8 +41,6 @@ CENTROID_ VARYING_ float nightRatio;
 #endif
 
 VARYING_ highp vec3 eyeVec;
-// Color of the light emitted by the light sources.
-const vec3 artificialLight = vec3(1.04, 1.04, 1.04);
 
 #ifdef ENABLE_DYNAMIC_SHADOWS
 
@@ -203,8 +202,11 @@ void main(void)
 	// The pre-baked colors are halved to prevent overflow.
 	// The alpha gives the ratio of sunlight in the incoming light.
 	nightRatio = 1.0 - color.a;
+	
+	vec3 finalLightColor = lightingColor.rgb + color.rgb; // Reduce the effect of tinting if its already bright (e.g when its in sunlight)
+
 	color.rgb = color.rgb * (color.a * dayLight.rgb +
-		nightRatio * artificialLight.rgb) * 2.0;
+		nightRatio * finalLightColor) * 2.0;
 	color.a = 1.0;
 
 	// Emphase blue a bit in darker places

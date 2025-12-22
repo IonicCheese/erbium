@@ -724,18 +724,6 @@ smooth_lighting (Smooth lighting) bool true
 #    at the expense of minor visual glitches that do not impact game playability.
 performance_tradeoffs (Tradeoffs for performance) bool false
 
-[**Fullbright]
-fullbright (Fullbright) bool false
-
-#   How much influence fullbright has on the lighting of entities
-#   Requires: fullbright
-fullbright_entity_factor (Fullbright Entity Factor) float 1.0 0.0 1.0
-
-#   How much influence fullbright has on the lighting of nodes
-#   Requires: fullbright
-fullbright_node_factor (Fullbright Factor) float 1.0 0.0 1.0
-
-
 [**Waving Nodes]
 
 #    Set to true to enable waving leaves.
@@ -887,6 +875,9 @@ enable_translucent_foliage (Translucent foliage) bool false
 #
 #   Requires: enable_waving_water, enable_dynamic_shadows
 enable_water_reflections (Liquid reflections) bool false
+
+#   Changes artifiical light temperature in kelvin
+light_temp (Lighting temperature) int 6500 1000 40000
 
 [*Audio]
 

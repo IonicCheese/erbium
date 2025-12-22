@@ -9,8 +9,6 @@ uniform lowp vec4 fogColor;
 uniform float fogDistance;
 uniform float fogShadingParameter;
 
-uniform float fullbrightEntityFactor;
-
 // The cameraOffset is the current center of the visible world.
 uniform highp vec3 cameraOffset;
 uniform float animationTimer;
@@ -385,7 +383,7 @@ void main(void)
 		discard;
 #endif
 
-	vec4 col = vec4(mix(base.rgb * varColor.rgb, base.rgb, fullbrightEntityFactor), 1.0);
+	vec4 col = vec4(base.rgb * varColor.rgb, 1.0);
 	col.rgb *= vIDiff;
 
 #ifdef ENABLE_DYNAMIC_SHADOWS

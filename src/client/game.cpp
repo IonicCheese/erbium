@@ -6,6 +6,7 @@
 
 #include <cmath>
 #include <csignal>
+#include <algorithm>
 #include "client/gameui.h"
 #include "client/inputhandler.h"
 #include "client/texturepaths.h"
@@ -60,6 +61,47 @@
 typedef s32 SamplerLayer_t;
 
 
+void kelvinToRgb(video::SColorf &color, u32 kelvin)
+{
+
+	if (kelvin < 1000) kelvin = 1000;
+	if (kelvin > 40000) kelvin = 40000;
+
+	double temp = kelvin / 100.0f;
+	double r, g, b;
+
+	if (temp <= 66.0) {
+        r = 255.0;
+    } else {
+        r = temp - 60.0;
+        r = 329.698727446 * std::pow(r, -0.1332047592);
+    }
+
+    if (temp <= 66.0) {
+        g = temp;
+        g = 99.4708025861 * std::log(g) - 161.1195681661;
+    } else {
+        g = temp - 60.0;
+        g = 288.1221695283 * std::pow(g, -0.0755148492);
+    }
+
+    if (temp >= 66.0) {
+        b = 255.0;
+    } else {
+        if (temp <= 19.0) {
+            b = 0.0;
+        } else {
+            b = temp - 10.0;
+            b = 138.5177312231 * std::log(b) - 305.0447927307;
+        }
+    }
+
+	// Clamp to 0-255 then divide by 255 to get 0-1
+	color->r = (f32)std::clamp(r, 0.0, 255.0) / 255.0f;
+	color->g = (f32)std::clamp(g, 0.0, 255.0) / 255.0f;
+	color->b = (f32)std::clamp(b, 0.0, 255.0) / 255.0f;
+}
+
 class GameGlobalShaderUniformSetter : public IShaderUniformSetter
 {
 	Sky *m_sky;
@@ -110,17 +152,12 @@ class GameGlobalShaderUniformSetter : public IShaderUniformSetter
 	CachedPixelShaderSetting<float>
 		m_volumetric_light_strength_pixel{"volumetricLightStrength"};
 
-	bool m_fullbright_enabled;
-	float m_fullbright_entity_factor;
-	float m_fullbright_node_factor;
-	CachedPixelShaderSetting<float> m_fullbright_entity_factor_pixel{"fullbrightEntityFactor"};
-	CachedPixelShaderSetting<float> m_fullbright_node_factor_pixel{"fullbrightNodeFactor"};
+	video::SColorf m_lighting_color;
+	CachedVertexShaderSetting<float, 3> m_lighting_color_vertex{"lightingColor"};
 
-	static constexpr std::array<const char*, 4> SETTING_CALLBACKS = {
+	static constexpr std::array<const char*, 2> SETTING_CALLBACKS = {
 		"exposure_compensation",
-		"fullbright",
-		"fullbright_entity_factor",
-		"fullbright_node_factor",
+		"light_temp",
 	};
 
 public:
@@ -129,14 +166,8 @@ public:
 		if (name == "exposure_compensation")
 			m_user_exposure_compensation = g_settings->getFloat("exposure_compensation", -1.0f, 1.0f);
 
-		if (name == "fullbright")
-			m_fullbright_enabled = g_settings->getBool("fullbright");
-
-		if (name == "fullbright_entity_factor")
-			m_fullbright_entity_factor = g_settings->getFloat("fullbright_entity_factor", 0.0f, 1.0f);
-
-		if (name == "fullbright_node_factor")
-			m_fullbright_node_factor = g_settings->getFloat("fullbright_node_factor", 0.0f, 1.0f);
+		if (name == "light_temp")
+			kelvinToRgb(m_lighting_color, g_settings->getU32("light_temp"));
 	}
 
 	static void settingsCallback(const std::string &name, void *userdata)
@@ -158,9 +189,7 @@ public:
 		m_volumetric_light_enabled = g_settings->getBool("enable_volumetric_lighting") && m_bloom_enabled;
 		m_crack_animation_length_i = game->crack_animation_length;
 
-		m_fullbright_enabled = g_settings->getBool("fullbright");
-		m_fullbright_entity_factor = g_settings->getFloat("fullbright_entity_factor", 0.0f, 1.0f);
-		m_fullbright_node_factor = g_settings->getFloat("fullbright_node_factor", 0.0f, 1.0f);
+		kelvinToRgb(m_lighting_color, g_settings->getU32("light_temp"));
 	}
 
 	~GameGlobalShaderUniformSetter()
@@ -223,6 +252,8 @@ public:
 		};
 		m_exposure_params_pixel.set(exposure_buffer.data(), services);
 
+		m_lighting_color_vertex.set(m_lighting_color, services);
+
 		if (m_bloom_enabled) {
 			float intensity = std::max(lighting.bloom_intensity, 0.0f);
 			m_bloom_intensity_pixel.set(&intensity, services);
@@ -277,15 +308,6 @@ public:
 
 			float volumetric_light_strength = lighting.volumetric_light_strength;
 			m_volumetric_light_strength_pixel.set(&volumetric_light_strength, services);
-		}
-
-		if (m_fullbright_enabled) {
-			m_fullbright_entity_factor_pixel.set(&m_fullbright_entity_factor, services);
-			m_fullbright_node_factor_pixel.set(&m_fullbright_node_factor, services);
-		} else {
-			static const float zero = 0.0f;
-			m_fullbright_entity_factor_pixel.set(&zero, services);
-			m_fullbright_node_factor_pixel.set(&zero, services);
 		}
 	}
 
