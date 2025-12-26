@@ -945,6 +945,12 @@ menu_dark_theme (Menu dark theme) bool true
 #    Requires: menu_dark_theme
 menu_stars (Menu background stars) bool true
 
+#   Adjusts main menu camera slightly to create the
+#   illusion of diagonally moving clouds.
+#
+#   NOTE: Requires a restart to take effect.
+menu_diagonal_clouds (Diagonal clouds in menu) bool true
+
 [**HUD]
 
 #    Modifies the size of the HUD elements.

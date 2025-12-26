@@ -128,8 +128,16 @@ bool ClientLauncher::run(GameStartData &start_data, const Settings &cmd_args)
 	g_menuclouds = new Clouds(g_menucloudsmgr, ssrc.get(), -1, rand());
 	g_menuclouds->setHeight(100.0f);
 	g_menuclouds->update(v3f(0, 0, 0), m_rendering_engine->getMenuCloudsColor());
+
 	scene::ICameraSceneNode* camera;
-	camera = g_menucloudsmgr->addCameraSceneNode(NULL, v3f(0, 0, 0), v3f(0, 60, 100));
+	if (g_settings->getBool("menu_diagonal_clouds")) {
+		// Diagonal view
+		camera = g_menucloudsmgr->addCameraSceneNode(NULL, v3f(-70, 0, -70), v3f(0, 60, 100));
+	} else {
+		// Default view
+		camera = g_menucloudsmgr->addCameraSceneNode(NULL, v3f(0, 0, 0), v3f(0, 60, 100));
+	}
+
 	camera->setFarValue(10000);
 
 	/*

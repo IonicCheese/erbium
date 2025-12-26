@@ -302,6 +302,7 @@ void set_default_settings()
 	settings->setDefault("menu_clouds", "true");
 	settings->setDefault("menu_dark_theme", "true");
 	settings->setDefault("menu_stars", "true");
+	settings->setDefault("menu_diagonal_clouds", "true");
 	settings->setDefault("translucent_liquids", "true");
 	settings->setDefault("console_height", "0.6");
 	settings->setDefault("console_color", "(0,0,0)");
