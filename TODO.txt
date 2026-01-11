@@ -6,7 +6,7 @@
 
 ## MAIN MENU
 [X] Dark theme main menu
-[X] Main menu stars
+[/] Main menu stars
 [/] Custom Menu banner
 
 
