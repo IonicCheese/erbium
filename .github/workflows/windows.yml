@@ -65,7 +65,7 @@ jobs:
           dest=$(mktemp -d)
           unzip -q -d "$dest" artifact/*.zip
           cd "$dest"/luanti-*-win*
-          wine bin/luanti.exe --version
+          wine bin/erbium.exe --version
 
       - name: Build for NSIS
         run: |
