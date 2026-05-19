@@ -10,15 +10,15 @@ Copyright (C) 2026 IonicCheese and contributors (see source file comments, the u
 
 TODO
 ----
-[ ] Complete 5.16.1 rebase
-[X] Lowered place time limit
-[ ] Better Name autofill
-[ ] Configurable Chat macros (10x)
-[ ] Custom Artificial Light temperature
-[ ] Water Screen-Space Reflections
-[ ] Lens Flares
-[ ] Other Eye-candy effects
+- [ ] Complete 5.16.1 rebase
+- [X] Lowered place time limit
+- [ ] Better Name autofill
+- [ ] Configurable Chat macros (10x)
+- [ ] Custom Artificial Light temperature
+- [ ] Water Screen-Space Reflections
+- [ ] Lens Flares
+- [ ] Other Eye-candy effects
 
 Misc TODO
 ---------
-[ ] Custom Menu banner
+- [ ] Custom Menu banner
