@@ -12,13 +12,14 @@ TODO
 ----
 - [ ] Complete 5.16.1 rebase
 - [X] Lowered place time limit
-- [ ] Better Name autofill
-- [ ] Configurable Chat macros (10x)
-- [ ] Custom Artificial Light temperature
+- [ ] Better Name Autofill
+- [ ] Configurable Chat Macros (10x)
+- [ ] Custom Artificial Light Temperature
 - [ ] Water Screen-Space Reflections
 - [ ] Lens Flares
-- [ ] Other Eye-candy effects
+- [ ] Other Eye-candy Effects
 
 Misc TODO
 ---------
-- [ ] Custom Menu banner
+- [ ] Custom Menu Banner
+- [ ] Higher Contrast Logo
